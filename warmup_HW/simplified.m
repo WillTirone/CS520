@@ -29,7 +29,7 @@ nrs      = floor( (rmax-rmin)/dr );      % equi-spaced r-values
 r_values = linspace( rmin, rmax, nrs ); 
 
 % Generate data matrix
-M = matrix_generator(x0, r_values, steps_transient, steps_asymp);
+M = operation_matrix_generator(x0, r_values, steps_transient, steps_asymp);
 
 %% ==================================================================
 
