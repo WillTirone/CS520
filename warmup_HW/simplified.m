@@ -10,6 +10,8 @@
 close all
 clear all 
 
+tic;
+
 fprintf('\n\n   Begin of %s ...  \n\n', mfilename);
 
 %% ... Parameter setting and variation for investigative study 
@@ -36,6 +38,13 @@ M = operation_matrix_generator(x0, r_values, steps_transient, steps_asymp);
 %% ... visual inspection and investigation 
 
 isteps = steps_transient +(1:steps_asymp)';  
+
+% Stop the timer
+elapsed_time = toc;
+
+% Display the elapsed time
+fprintf('Elapsed time: %f seconds\n', elapsed_time);
+
 
 fprintf('\n   plotting bifurcation diagram and the matrix ... ');
 
