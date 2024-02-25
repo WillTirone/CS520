@@ -13,7 +13,7 @@ fig_flag = 0;
 %% set DoFs with polynomial fitting 
 
 % ..  exact if n = m-1, approximated and regulated if n < m-1 
-n  = 9;                         % set the dimension (DoF) lower 
+n  = 10;                         % set the dimension (DoF) lower 
 
 nx = n;                         % DoF for each coordinate 
 ny = n;
@@ -86,7 +86,7 @@ fig_flag = 0;
 %% set DoFs with polynomial fitting 
 
 % ..  exact if n = m-1, approximated and regulated if n < m-1 
-n  = 9;                         % set the dimension (DoF) lower 
+n  = 10;                         % set the dimension (DoF) lower 
 
 nx = n;                         % DoF for each coordinate 
 ny = n;
@@ -151,8 +151,8 @@ print('LS_Fitting_with_Chebyshev_Nodes.jpg', '-djpeg', '-r300');
 %% ... prescribed conditions on adaptation 
 
 % high enough tolerance or low enough degree will give us a poly probably
-rtau  = 0.25;
-nmax  = 30;
+rtau  = 0.005;
+nmax  = 10;
 
 fprintf('\n   initial sample set and Runge fitting ... ');
 nmin  = 5; 
@@ -202,7 +202,6 @@ figure('Name','adaptive sampling-fitting')
 plot( xk, yk, 'bx', xkmid, ykmid,  'bx')
 hold on 
 plot( xk, pvalk, 'ro', xkmid, pvalkmid, 'ro');
-plot( xfine, yfine, 'k-.'); 
 hold off 
 deg_rmax = sprintf( 'degree %d, rmax=%1.3f', n-1, rkmax );
 title( ['LS Adaptive Sampling-fitting: ', deg_rmax ] ); 
