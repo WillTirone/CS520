@@ -1,8 +1,6 @@
 % demo_curve_fitting.m 
 function max_error = equi_spaced(n)
 
-close all
-
 fprintf('\n\n   %s began \n', mfilename);
 
 %% ... set a emall trianingset  
