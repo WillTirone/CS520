@@ -63,7 +63,7 @@ while rkmax > rtau && n < nmax    % termination conditions
   pvalkmid  = polyval( pk, xkmid );
 
   rk  = abs( pvalkmid - ykmid ); 
-  [ rkmax, ik ] = max(rk); 
+  [ rkmax, ik ] = max(rk);
 
 end
 

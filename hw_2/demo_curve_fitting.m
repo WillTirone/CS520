@@ -1,5 +1,4 @@
-% demo_curve_fitting.m 
-
+% demo_curve_fitting.m
 close all
 clear all
 
@@ -17,12 +16,16 @@ fig_flag = 0;
 %% ... set a emall trianingset  
 
 fprintf('\n   choose a small training set' );
-mh = 15;    
+n = 30;
+m  = n+1;
 
-m  = 2*mh + 1;
-t  = linspace(-1,1,m);
+t  = (1:m)-1/2;              % mid-points 
+t  = t(m:-1:1);
+t  = cos( t * pi/m );        % a half circle (one pi)   
 
-[xt, yt, zt ] = get_curve3D (t, fig_flag)  ; 
+
+[xt, yt, zt] = get_curve3D (t, fig_flag)  ; 
+
 
 %% ... set DoFs with polynomial fitting 
 
@@ -30,21 +33,19 @@ t  = linspace(-1,1,m);
 
 fprintf('\n   make exact fitting ... ' );
 
-n  = m-1; 
+fx_fit_type = 'cubicspline';
+fy_fit_type = 'fourier3';
+fz_fit_type = 'fourier3';
 
-nx = n;                         % DoF for each coordinate 
-ny = n;
-nz = n; 
-
-px = polyfit(t,xt, nx);
-py = polyfit(t,yt, ny);
-pz = polyfit(t,zt, nz); 
+[fx, ~] = fit(t',  xt, fx_fit_type);
+[fy, ~] = fit(t', yt, fy_fit_type);
+[fz, ~] = fit(t', zt, fz_fit_type);
 
 %% .. reconstruct the training points 
 
-xt_r = polyval(px,t );   
-yt_r = polyval(py,t ); 
-zt_r = polyval(pz,t ); 
+xt_r = feval(fx, t); 
+yt_r = feval(fy, t);
+zt_r = feval(fz, t);
 
 fprintf('\n   show the fitting at the training set ... ' ); 
 
@@ -63,9 +64,9 @@ fprintf('\n   show the fitting/misfitting at a test set ... ' );
 
 tq = ( t(2:m) + t(1:m-1))/2 ;    % mid points among t 
 
-xtq_p = polyval(px,tq);          
-ytq_p = polyval(py,tq); 
-ztq_p = polyval(pz,tq); 
+xtq_p = feval(fx,tq);          
+ytq_p = feval(fy,tq); 
+ztq_p = feval(fz,tq); 
 
 fig_flag = 0; 
 [ xtq, ytq, ztq] = get_curve3D( tq, fig_flag );   % get the ground truth 
