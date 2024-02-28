@@ -19,4 +19,5 @@ function resized_image = resize_2d_color(image, spec)
         [X, Y] = meshgrid(linspace(0, n-1, new_n), linspace(0, m-1, new_m));
         resized_image(:,:,i) = interp2(0:n-1, 0:m-1, double(image(:,:,i)), X, Y, 'linear');
     end
+    resized_image = (resized_image - min(resized_image(:))) / (max(resized_image(:)) - min(resized_image(:)));
 end

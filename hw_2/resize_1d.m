@@ -28,4 +28,6 @@ function resized_image = resize_1d(image, spec)
             resized_image(:, j, c) = interp1(0:m-1, intermediate_image(:, j), linspace(0, m-1, new_m), 'linear');
         end
     end
+
+    resized_image = (resized_image - min(resized_image(:))) / (max(resized_image(:)) - min(resized_image(:)));
 end

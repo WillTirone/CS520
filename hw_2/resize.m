@@ -5,9 +5,7 @@ close all;
 %% Generating resized images
 original = imread('duke.png');
 resized_1d = resize_1d(double(original), [900, 900]);
-resized_1d = (resized_1d - min(resized_1d(:))) / (max(resized_1d(:)) - min(resized_1d(:)));
-resized_2d = resize_2d(double(original) , [800, 800]);
-resized_2d = (resized_2d - min(resized_2d(:))) / (max(resized_2d(:)) - min(resized_2d(:)));
+resized_2d = resize_2d(double(original) , [900, 900]);
 
 %% Plotting 1d resized image
 fig1 = figure();
